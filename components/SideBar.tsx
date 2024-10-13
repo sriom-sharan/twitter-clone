@@ -50,7 +50,7 @@ const SidebarButtons: TwitterSidebarButton[] = [
 
 const SideBar = () => {
   return (
-    <>
+    <div className=" flex flex-col fixed">
       <span className="size-fit rounded-full p-2 flex items-center hover:bg-zinc-800 justify-center ">
         <FaXTwitter size={30} />
       </span>
@@ -69,7 +69,7 @@ const SideBar = () => {
       <button className="bg-blue-500 p-3 mt-4 rounded-full font-semibold">
         Post
       </button>
-    </>
+    </div>
   );
 };
 
