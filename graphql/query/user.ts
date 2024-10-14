@@ -6,3 +6,9 @@ export const verifyTokenQuery = graphql(`#graphql
     }
 
 `);
+export const createUserData = graphql(`#graphql
+    mutation CreateUser($email:String!,$lastName:String!,$firstName:String!,$dob:String!){
+        createUser(email: $email,lastName:$lastName,firstName:$firstName,dob:$dob)
+    }
+
+`);

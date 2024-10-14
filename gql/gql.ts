@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "#graphql\n    query VerifyUser($token:String!){\n        verifyToken(token: $token)\n    }\n\n": types.VerifyUserDocument,
+    "#graphql\n    mutation CreateUser($email:String!,$lastName:String!,$firstName:String!,$dob:String!){\n        createUser(email: $email,lastName:$lastName,firstName:$firstName,dob:$dob)\n    }\n\n": types.CreateUserDocument,
 };
 
 /**
@@ -35,6 +36,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "#graphql\n    query VerifyUser($token:String!){\n        verifyToken(token: $token)\n    }\n\n"): (typeof documents)["#graphql\n    query VerifyUser($token:String!){\n        verifyToken(token: $token)\n    }\n\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "#graphql\n    mutation CreateUser($email:String!,$lastName:String!,$firstName:String!,$dob:String!){\n        createUser(email: $email,lastName:$lastName,firstName:$firstName,dob:$dob)\n    }\n\n"): (typeof documents)["#graphql\n    mutation CreateUser($email:String!,$lastName:String!,$firstName:String!,$dob:String!){\n        createUser(email: $email,lastName:$lastName,firstName:$firstName,dob:$dob)\n    }\n\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
