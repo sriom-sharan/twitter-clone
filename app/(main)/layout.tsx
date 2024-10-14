@@ -17,14 +17,14 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <div className="flex w-screen h-screen gap-4">
-          <div className="w-[22%] py-4 flex justify-end">
+        <div className="flex w-screen  gap-6 bg-black">
+          <div className="w-[22%] py-4 flex justify-end bg-black">
             <SideBar />
           </div>
           <div className="w-[1050px] flex gap-4">
-            <div className="w-2/3 ">{children}</div>
-            <div className="w-[30%]">
-              <Googlelogin/>
+            <div className="w-[60%] bg-black">{children}</div>
+            <div className="w-[35%] p-2 bg-black">
+              <Googlelogin />
             </div>
           </div>
         </div>

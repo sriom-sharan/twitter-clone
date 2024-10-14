@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="border-x-[0.2px] border-white/30">
+    <div className="border-x-[0.2px] border-white/30 bg-black">
       <FeedCard />
       <FeedCard />
       <FeedCard />
