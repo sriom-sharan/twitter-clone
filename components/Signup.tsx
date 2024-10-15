@@ -31,19 +31,22 @@ export default function Login() {
     dob: "",
   });
   const [showDiolog, setshowDiolog] = useState("create");
-
+  const [loading, setLoading] = useState(false);
   const newUserSchema = z.object({
-    email: z.string(),
+    email: z.string().email(),
     firstName: z.string(),
     lastName: z.string(),
     dob: z.string(),
   });
 
   const handleSubmit = async (data: NewUser) => {
+    setLoading(true);
     const { success } = newUserSchema.safeParse(data);
     if (!success) return "Invalid user data";
     const response = await createAccount(data);
+    if (response === "OTP is sent to email address") handleNextClick("otp");
     if (response) console.log(response);
+    setLoading(false);
   };
 
   const handleNextClick = (data: string) => {
@@ -85,7 +88,7 @@ export default function Login() {
               <Input
                 id="firstname"
                 placeholder="First Name"
-                className="py-7 border-white/30 text-base focus:border-blue-500"
+                className="py-7 border-white/30 bg-transparent text-base focus:border-blue-500"
                 value={userData.firstName}
                 onChange={(e) =>
                   setUserData({ ...userData, firstName: e.target.value })
@@ -94,7 +97,7 @@ export default function Login() {
               <Input
                 id="lastname"
                 placeholder="Last Name"
-                className="py-7 border-white/30 text-base focus:border-blue-500"
+                className="py-7 border-white/30 bg-transparent text-base focus:border-blue-500"
                 value={userData.lastName}
                 onChange={(e) =>
                   setUserData({ ...userData, lastName: e.target.value })
@@ -105,7 +108,7 @@ export default function Login() {
               <Input
                 id="email"
                 placeholder="Email"
-                className="py-7 text-base border-white/30 focus:border-blue-500"
+                className="py-7 text-base border-white/30 bg-transparent focus:border-blue-500"
                 value={userData.email}
                 onChange={(e) =>
                   setUserData({ ...userData, email: e.target.value })
@@ -132,15 +135,26 @@ export default function Login() {
             </div>
           </div>
           <DialogFooter className="mx-auto mt-6 w-full px-8">
+            {loading ? (
+              
+                <svg
+                  className="animate-spin h-8 w-8 mx-auto mb-4  border-t-transparent border-x-blue-500 border-b-blue-600 border-[3px] rounded-full"
+                  viewBox="0 0 24 24"
+                >
+                </svg>
+                
+            ):
             <Button
               type="button"
-              className="w-full bg-white/60 hover:bg-white text-black py-7 rounded-full mb-4  font-semibold"
+              className={`w-full bg-white/80 hover:bg-white/95 text-black py-7 rounded-full mb-4  font-semibold`}
               onClick={() => {
-                handleSubmit(userData)
-                handleNextClick("otp")}}
+                handleSubmit(userData);
+                // handleNextClick("otp")
+              }}
             >
               Next
             </Button>
+            }
           </DialogFooter>
         </DialogContent>
       </Dialog>

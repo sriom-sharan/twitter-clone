@@ -24,9 +24,8 @@ export const createAccount = async ({
     lastName,
     firstName,
   });
-console.log(response);
 
-  return "ok";
+  return "OTP is sent to email address";
 };
 export const createUserName = async (username: string) => {
   return "ok";
