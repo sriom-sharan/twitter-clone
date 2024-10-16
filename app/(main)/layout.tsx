@@ -17,13 +17,13 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <div className="flex w-screen  gap-6 bg-black">
-          <div className="w-[22%] py-4 flex justify-end bg-black">
+        <div className="flex w-screen  lg:gap-6 gap-2 bg-black">
+          <div className="lg:w-[25%] py-4 flex justify-end w-[15%] bg-black">
             <SideBar />
           </div>
-          <div className="w-[1050px] flex gap-4">
-            <div className="w-[60%] bg-black">{children}</div>
-            <div className="w-[35%] p-2 bg-black">
+          <div className="lg:w-[1050px] w-[85%] flex lg:gap-4 gap-2">
+            <div className="lg:w-[55%] mr-10 md:mr-0 md:w-[65%] w-full bg-black">{children}</div>
+            <div className="lg:w-[35%] sm:w-[35%] md:block hidden  p-2 bg-black">
               <Googlelogin />
             </div>
           </div>

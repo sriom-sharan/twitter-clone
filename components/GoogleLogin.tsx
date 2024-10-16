@@ -4,6 +4,8 @@ import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { graphqlClient } from "@/graphql/client/api";
 import { verifyTokenQuery } from "@/graphql/query/user";
 import Signup from "./Signup";
+import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 const handleGoogleToken = async (cred: CredentialResponse) => {
   const response = await graphqlClient.request(verifyTokenQuery, {
@@ -13,6 +15,7 @@ const handleGoogleToken = async (cred: CredentialResponse) => {
 };
 
 const Googlelogin = () => {
+  const router = useRouter();
   return (
     <div className="w-full flex flex-col gap-2 p-4 items-start rounded-2xl border-[0.2px] border-white/20">
       <h1 className="font-semibold text-xl">New to X?</h1>
@@ -31,7 +34,16 @@ const Googlelogin = () => {
         }}
       />
       <h1></h1>
-      <Signup />
+      {/* <Signup /> */}
+      <Button
+        onClick={() => {
+          router.push("/signup");
+        }}
+        variant="outline"
+        className="text-black bg-white font-medium rounded-full w-full py-5"
+      >
+        Create Account
+      </Button>
       <p className="text-[13px] tracking-wide text-white/40  my-2">
         By signing up, you agree to the{" "}
         <span className="text-blue-400 font-medium">Terms of Service</span> and{" "}
